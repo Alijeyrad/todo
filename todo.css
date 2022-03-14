@@ -80,6 +80,6 @@ footer {
   }
   .main {
   top: 56px;
-  height: calc(100% - 127px);
+  height: calc(89% - 127px);
   }
 }
