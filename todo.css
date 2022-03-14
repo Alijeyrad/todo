@@ -41,7 +41,7 @@ html, body {
   top: 71px;
   padding: 5px 5px;
   width: 100%;
-  height: calc(100vh - 20%);
+  height: calc(100% - 20vh);
   display: flex;
   justify-content: center;
   max-height: 550px;
