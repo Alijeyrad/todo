@@ -8,4 +8,3 @@ class Task {
     return this.status? 'the task is done':'task is not done';
   }
 }
-
