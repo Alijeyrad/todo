@@ -80,6 +80,6 @@ footer {
   }
   .main {
   top: 56px;
-  max-height: calc(80vh - 129px);
+  height: calc(var(--vh, 1vh) * 78);
   }
 }
