@@ -1,5 +1,6 @@
 html, body {
   height: 100vh;
+  background-color: #e4fcf1e7;
 }
 
 .navbar-brand {
@@ -8,7 +9,7 @@ html, body {
 }
 
 #header {
-  color: #e4fcf1e7;
+  color: #198754;
 }
 
 #logo {
@@ -22,7 +23,7 @@ html, body {
 }
 
 .fa-list-check {
-  color: #e4fcf1e7;
+  color: #198754;
   font-size: 26px;
 }
 
@@ -38,7 +39,7 @@ html, body {
 .main {
   position: absolute;
   top: 71px;
-  padding: 5px 10px;
+  padding: 5px 5px;
   width: 100%;
   height: calc(100vh - 141px);
   display: flex;
@@ -47,15 +48,26 @@ html, body {
 }
 
 section {
+  background-color: #fff;
   width: 100%;
   max-width: 800px;
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid rgba(194, 226, 187, 0.664);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: -5px 4px 28px 2px rgba(0,0,0,0.2) inset, 
+    -5px 4px 28px 2px rgb(228, 252, 241) inset;
+}
 
+footer {
+  border-top: 1px solid rgb(155, 157, 159, 0.4);
 }
 
 .footer{
   z-index: 10;
+}
+
+.bg-light {
+  background-color: rgb(155, 157, 159, 0.5) !important;
 }
 
 @media (max-width: 405px) {
@@ -65,5 +77,9 @@ section {
   }
   .fa-list-check {
     font-size: 18px;
+  }
+  .main {
+  top: 56px;
+  height: calc(100vh - 126px);
   }
 }
