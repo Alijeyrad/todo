@@ -41,7 +41,7 @@ html, body {
   top: 71px;
   padding: 5px 5px;
   width: 100%;
-  min-height: calc(100vh - 25%);
+  min-height: 79vh;
   display: flex;
   justify-content: center;
   max-height: 550px;
