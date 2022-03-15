@@ -14,7 +14,7 @@
   <!-- My Styles -->
   <link rel="stylesheet" href="./todo.css">
 </head>
-<body class="d-flex flex-column">
+<body class="d-flex flex-column" onload="x.startApp()">
     <!-- Header -->
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -40,7 +40,7 @@
   <main class="main">
     <!-- the section where the tasks are updated-->
     <div class="wrapper overflow-auto">
-      <!-- this is a single task -->
+      <!-- this is a single task 
       <div id="task">
         <div class="form-check">
           <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckChecked">
@@ -49,25 +49,7 @@
           </label>
         </div>
       </div>
-      <!-- this is a single task -->
-      <div id="task">
-        <div class="form-check">
-          <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckChecke">
-          <label class="form-check-label" for="flexCheckChecke">
-            task 1 aysefv aesifuy iuwyfg uiyafd giuyasdf iuyaedfg iuyadg iuyadg fiuaydfg jbju
-          </label>
-        </div>
-      </div>
-      <!-- this is a single task -->
-      <div id="task">
-        <div class="form-check">
-          <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckCheck">
-          <label class="form-check-label" for="flexCheckCheck">
-            task 1
-          </label>
-        </div>
-      </div>
-
+      -->
     </div>
     
     
@@ -77,9 +59,9 @@
   <!-- Footer -->
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-      <form action="" class="footer-form">
+      <form action="" class="footer-form" id="addTaskForm">
         <input class="form-control" type="text" placeholder="Task e.g. Go Running" aria-label="default input example">
-        <span id="button"><button type="button" class="btn btn-success text-nowrap shadow-none">Add Task</button></span>
+        <span id="button"><button onclick="x.addTask(event)" type="button" class="btn btn-success text-nowrap shadow-none">Add Task</button></span>
       </form>
     </div>
   </footer>
