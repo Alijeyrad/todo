@@ -41,7 +41,7 @@ html, body {
   top: 71px;
   padding: 5px 5px;
   width: 100%;
-  min-height: calc(100vh - 142px);
+  height: calc(100vh - 142px);
   display: flex;
   justify-content: center;
   max-height: 550px;
@@ -80,6 +80,6 @@ footer {
   }
   .main {
   top: 56px;
-  height: calc(60vh - 127px);
+  height: calc(80vh - 127px);
   }
 }
