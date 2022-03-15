@@ -15,7 +15,7 @@ header {
 }
 
 #header {
-  color: #ffcc80;
+  color: #f7e4c7e0;
 }
 /* #cff5e3e7 */
 
@@ -23,6 +23,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  padding-left: 10px;
 }
 
 .navbar-collapse {
@@ -30,7 +31,7 @@ header {
 }
 
 .fa-list-check {
-  color: #ffcc80;
+  color: #f7e4c7e0;
   font-size: 26px;
 }
 
@@ -94,7 +95,7 @@ footer {
 }
 
 .form-check-input:checked {
-  background-color: #198754;
+  background-color: #00cc99;
   border: 1px solid #198754 !important;
 }
 
@@ -113,7 +114,7 @@ footer {
   width: 12%;
   bottom: -2px;
   left: 0;
-  border: 2px solid white;
+  border: 4px solid white;
 }
 
 #task:before {
@@ -123,7 +124,7 @@ footer {
   width: 12%;
   bottom: -2px;
   right: 0;
-  border: 2px solid white;
+  border: 4px solid white;
 }
 
 @media (max-width: 405px) {
