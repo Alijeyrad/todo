@@ -8,8 +8,13 @@ html, body {
   padding-left: 15px;
 }
 
+header {
+  height: 71px;
+  margin-bottom: 20px;
+}
+
 #header {
-  color: #198754;
+  color: #fff;
 }
 
 #logo {
@@ -23,7 +28,7 @@ html, body {
 }
 
 .fa-list-check {
-  color: #198754;
+  color: #fff;
   font-size: 26px;
 }
 
@@ -35,7 +40,7 @@ html, body {
 #button {
   padding-left: 6px;
 }
-
+/*
 .main {
   position: absolute;
   top: 71px;
@@ -46,16 +51,35 @@ html, body {
   justify-content: center;
   max-height: 550px;
 }
+*/
 
-section {
-  background-color: #fff;
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100%;
   width: 100%;
+
+}
+
+.wrapper {
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #fff;
   border: 1px solid rgba(194, 226, 187, 0.664);
-  border-radius: 10px;
   padding: 20px;
   box-shadow: -5px 4px 28px 2px rgba(0,0,0,0.2) inset, 
     -5px 4px 28px 2px rgb(228, 252, 241) inset;
+  border-radius: 10px;
+
+}
+
+section {
+  width: 100%;
 }
 
 footer {
@@ -81,5 +105,9 @@ footer {
   .main {
   top: 56px;
   height: calc(90vh - 75px);
+  }
+  header {
+    margin: 0;
+    height: 62px;
   }
 }
