@@ -6,9 +6,10 @@ var idMaker = function() {
 
 
 var taskManager = function() {
+  let clickedID;
   const tasks = [
     {
-      id: 1,
+      id: '1',
       title: 'Demo Task',
       date: new Date(),
       status: true,
@@ -21,7 +22,7 @@ var taskManager = function() {
             </label>
           </div>
             <div class="buttons">
-              <button id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+              <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
               <button id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
               <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
             </div>
@@ -32,7 +33,8 @@ var taskManager = function() {
           }
     }
   ];
-  
+  var myModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+
   var startPage = function() {
     let innerHtml = '';
     for (item of tasks) {
@@ -44,7 +46,7 @@ var taskManager = function() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl)
-})
+    })
   }
 
   return {
@@ -70,7 +72,7 @@ var taskManager = function() {
                   </label>
                 </div>
                 <div class="buttons">
-                  <button id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+                  <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
                   <button id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
                   <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
                 </div>
@@ -90,7 +92,22 @@ var taskManager = function() {
       return startPage();
     },
 
-    
+    selectedCard: function(event) {
+      clickedID = event.path[2].children[0].children[0].id;
+      myModal.toggle();
+    },
+
+    deleteTask: function(event) {
+      let length = tasks.length;
+      for (let i = 0; i < length; i++) {
+        if (tasks[i].id === clickedID) {
+          tasks.splice(i, 1);
+          break;
+        }
+      }
+      startPage();
+      myModal.hide();
+    },
   }
 }
 
