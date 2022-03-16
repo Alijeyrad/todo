@@ -7,11 +7,13 @@ var idMaker = function() {
 
 var taskManager = function() {
   let clickedID;
+  let date = new Date();
+  let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
   const tasks = [
     {
       id: '1',
       title: 'Demo Task',
-      date: new Date(),
+      date: dateString,
       status: true,
       element: function(){
         return `<div id="task">
@@ -37,6 +39,10 @@ var taskManager = function() {
 
   var startPage = function() {
     let innerHtml = '';
+    if (tasks.length == 0) {
+      innerHtml = '<br><h3>Add Tasks to see them here.</h3>';
+      document.getElementsByClassName('wrapper')[0].innerHTML = innerHtml;
+    }
     for (item of tasks) {
       if (item.status) {
         innerHtml += item.element();
@@ -55,13 +61,14 @@ var taskManager = function() {
       let text = event.path[2][0].value;
       if (text) {
         let date = new Date();
+        let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
         let status = true;
         let id = idMaker();
         tasks.push(
           {
             id: id,
             title: text,
-            date: date,
+            date: dateString,
             status: status,
             element: function(){
               return `<div id="task">

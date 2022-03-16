@@ -3,6 +3,10 @@ html, body {
   background-color: #e4fcf1e7;
 }
 
+h3 {
+  opacity: 0.8;
+}
+
 .navbar-brand {
   font-size: 30px;
   padding-left: 15px;
@@ -95,6 +99,7 @@ footer {
   border: 1px solid rgb(179, 119, 0, 0.6) !important;
 }
 
+
 .form-check-input:checked {
   background-color: #00cc99;
   border: 1px solid #198754 !important;
@@ -104,7 +109,7 @@ footer {
   width: 100%;
   padding: 15px 0;
   position: relative;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 label {
@@ -160,5 +165,8 @@ hr {
   }
   .btn-group-sm>.btn, .btn-sm {
     font-size: 0.6rem;
+  }
+  h3 {
+    font-size: 18px;
   }
 }
