@@ -60,9 +60,12 @@ var taskManager = function() {
     let doneElement = '<div id="line2"><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px">\
     <p id="completed">Completed <i class="fa-solid fa-check-double"></i></p><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px"></div>';
     let undoneTasks = [];
+    let doneTasks = [];
     for (item of tasks){
       if (item.status == true){
-        undoneTasks.push(item)
+        undoneTasks.push(item);
+      } else if (item.status == false){
+        doneTasks.push(item);
       }
     }
     if (undoneTasks.length == 0) {
@@ -76,7 +79,11 @@ var taskManager = function() {
         doneElement += item.elementDone();
       }
     }
-    document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement + doneElement;
+    if (doneTasks.length == 0) {
+      document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement;
+    } else {
+      document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement + doneElement;
+    }
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl)
@@ -167,7 +174,6 @@ var taskManager = function() {
       for (item of tasks) {
         if (item.id == ticID) {
           item.status = false;
-          console.log(item)
           break;
         }
       }
