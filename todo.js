@@ -20,7 +20,15 @@ var taskManager = function() {
               ${this.title}
             </label>
           </div>
-        </div>`
+            <div class="buttons">
+              <button id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+              <button id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
+              <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+            </div>
+            <div id="line">
+              <hr style="width:75%;">
+            </div>
+          </div>`
           }
     }
   ];
@@ -33,41 +41,58 @@ var taskManager = function() {
       }
     }
     document.getElementsByClassName('wrapper')[0].innerHTML = innerHtml;
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+})
   }
 
   return {
     addTask: function(event) {
       event.preventDefault();
       let text = event.path[2][0].value;
-      let date = new Date();
-      let status = true;
-      let id = idMaker();
-      tasks.push(
-        {
-          id: id,
-          title: text,
-          date: date,
-          status: status,
-          element: function(){
-            return `<div id="task">
-              <div class="form-check">
-                <input class="form-check-input shadow-none" type="checkbox" id="${this.id}">
-                <label class="form-check-label" for="${this.id}">
-                  ${this.title}
-                </label>
-              </div>
-            </div>`
+      if (text) {
+        let date = new Date();
+        let status = true;
+        let id = idMaker();
+        tasks.push(
+          {
+            id: id,
+            title: text,
+            date: date,
+            status: status,
+            element: function(){
+              return `<div id="task">
+                <div class="form-check">
+                  <input class="form-check-input shadow-none" type="checkbox" id="${this.id}">
+                  <label class="form-check-label" for="${this.id}">
+                    ${this.title}
+                  </label>
+                </div>
+                <div class="buttons">
+                  <button id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+                  <button id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
+                  <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+                </div>
+                <div id="line">
+                  <hr style="width:75%;">
+                </div>
+              </div>`
+            }
           }
-        }
-      )
-      console.log(tasks)
-      startPage();
+        )
+        startPage();
+        document.getElementsByClassName('form-control')[1].value = '';
+      }
     },
 
     startApp: function() {
       return startPage();
-    }
+    },
+
+    
   }
 }
 
 let x = taskManager();
+
