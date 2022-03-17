@@ -108,6 +108,7 @@ var taskManager = function() {
       }
     }
   ];
+  let tasksDuplicate = [];
 
   var startPage = function() {
     let undoneElement = '';
@@ -134,7 +135,7 @@ var taskManager = function() {
     
     // check if there are any tasks, if not show message
     if (undoneTasks.length == 0) {
-      undoneElement = '<br><div style="display:flex;justify-content:center;width:100%;"><h3>Add Tasks to see them here.</h3></div>';
+      undoneElement = '<br><div style="display:flex;justify-content:center;width:100%;"><h3 id="message">Add Tasks to see them here.</h3></div>';
       document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement;
     }
     // create important tasks element
@@ -478,6 +479,35 @@ var taskManager = function() {
     clearMemory: function() {
       localStorage.removeItem("theArray");
       alert("Local memory was cleared. If you refresh your page now any current task will be gone. To avoid this create a new task and everything will be saved.")
+    },
+
+    searchTasks: function(event) {
+      // I don't even know how I wrote this one :)) but it's beautifull <3
+      let query = event.path[0].value;
+      let searchTasks = [];
+      tasksDuplicate = [''];
+      tasksDuplicate = [...tasks];
+      for (item of tasks) {
+        let title = item.title;
+        let result = title.search(query)
+        if (result != -1) {
+          searchTasks.push(item);
+        }
+      }
+      if (searchTasks.length == 0) {
+        if (document.getElementById("message")) {
+          document.getElementById("message").innerHTML = "No Results Found"
+        }
+      }
+      tasks.splice(0, tasks.length);
+      for (item of searchTasks) {
+        tasks.push(item);
+      }
+      startPage();
+      tasks.splice(0, tasks.length);
+      for (item of tasksDuplicate) {
+        tasks.push(item)
+      }
     }
   }
 }

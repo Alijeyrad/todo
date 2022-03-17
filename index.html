@@ -35,15 +35,14 @@
               <a class="nav-link active" aria-current="page" onclick="x.clearCompleted()">Clear Completed</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" onclick="x.clearMemory()">Clear Memory</a>
+              <a class="nav-link active" aria-current="page" onclick="x.clearMemory()">lear Memory</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" onclick="x.markAllCompleted()">Mark All As Completed</a>
             </li>
           </ul>
-          <form class="d-flex" onclick="event.preventDefault()">
-            <input class="form-control me-2" type="search" placeholder="Filter Tasks" aria-label="Search">
-            <button class="btn btn-outline-success shadow-none" type="submit">Filter</button>
+          <form class="d-flex" action="#">
+            <input onkeyup="x.searchTasks(event)" onclick="x.startApp()" class="form-control me-2" type="search" placeholder="Filter Tasks" aria-label="Search">
           </form>
         </div>
       </div>
