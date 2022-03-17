@@ -335,6 +335,32 @@ var taskManager = function() {
         }
       }
       startPage();
+    },
+    
+    clearAll: function() {
+      tasks.splice(0, tasks.length);
+      startPage();
+    },
+
+    clearCompleted: function() {
+      const a = [];
+      for (item of tasks) {
+        if (item.status == true) {
+          a.push(item);
+        }
+      }
+      tasks.splice(0, tasks.length);
+      for (task of a) {
+        tasks.push(task);
+      }
+      startPage();
+    },
+
+    markAllCompleted: function() {
+      for (item of tasks) {
+        item.status = false;
+      }
+      startPage();
     }
   }
 }
