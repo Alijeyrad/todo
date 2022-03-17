@@ -279,12 +279,118 @@ var taskManager = function() {
             }
           }
         )
+        localStorage.setItem("theArray", JSON.stringify(tasks));
         startPage();
         document.getElementsByClassName('form-control')[1].value = '';
       }
     },
 
     startApp: function() {
+      let a = JSON.parse(localStorage.getItem("theArray"));
+      if (a) {
+        tasks.splice(0, tasks.length);
+        for (item of a) {
+          tasks.push(item);
+        }
+        for (item of tasks) {
+          item.element = function(){
+            return `<div id="task">
+              <div class="form-check">
+                <input onclick="x.taskDone(event)" class="form-check-input shadow-none" type="checkbox" id="${this.id}">
+                <label class="form-check-label" for="${this.id}">
+                  ${this.title}
+                </label>
+              </div>
+                <div class="buttons">
+                  <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+                  <button onclick="x.makeImportant(event)" name="${this.id}" id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
+                  <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+                </div>
+                <div id="line">
+                  <hr style="width:75%;">
+                </div>
+              </div>`
+          };
+          item.elementDone = function() {
+            let doneAndNotImp = `<div id="task">
+            <div class="form-check">
+              <input onclick="x.taskDone(event)" class="form-check-input shadow-none" type="checkbox" id="${this.id}" checked>
+              <label class="form-check-label" for="${this.id}">
+                ${this.title}
+              </label>
+            </div>
+            <div class="buttons">
+              <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+              <button disabled onclick="x.makeImportant(event)" name="${this.id}" id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
+              <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+            </div>
+            <div id="line">
+              <hr style="width:75%;">
+            </div>
+          </div>`;
+            let doneAndImp = `<div id="task">
+            <div class="form-check">
+              <input onclick="x.taskDone(event)" class="form-check-input shadow-none" type="checkbox" id="${this.id}" checked>
+              <label class="form-check-label" for="${this.id}">
+                ${this.title}
+              </label>
+            </div>
+            <div class="buttons">
+              <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+              <button disabled onclick="x.makeImportant(event)" name="${this.id}" id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-solid fa-star"></i>Important</button>
+              <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+            </div>
+            <div id="line">
+              <hr style="width:75%;">
+            </div>
+          </div>`
+          if (item.important) {
+            return doneAndImp;
+          } else if (item.important == false) {
+            return doneAndNotImp;
+          }
+          };
+          item.elementImportant = function() {
+            let undone = `<div id="task" style="background-color: #fff3e6;border-radius: 6px;padding-left: 5px;margin-top: 5px;">
+              <div class="form-check">
+                <input onclick="x.taskDone(event)" class="form-check-input shadow-none" type="checkbox" id="${this.id}">
+                <label class="form-check-label" for="${this.id}">
+                  ${this.title}
+                </label>
+              </div>
+                <div class="buttons">
+                  <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+                  <button onclick="x.makeImportant(event)" name="${this.id}" id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-solid fa-star"></i>Important</button>
+                  <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+                </div>
+                <div id="line">
+                  <hr style="width:75%;">
+                </div>
+              </div>`;
+            let done = `<div id="task">
+            <div class="form-check">
+              <input onclick="x.taskDone(event)" class="form-check-input shadow-none" type="checkbox" id="${this.id}" checked>
+              <label class="form-check-label" for="${this.id}">
+                ${this.title}
+              </label>
+            </div>
+              <div class="buttons">
+                <button onclick="x.selectedCard(event)" id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
+                <button onclick="x.makeImportant(event)" name="${this.id}" id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-solid fa-star"></i>Important</button>
+                <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${this.date}">Info</button>
+              </div>
+              <div id="line">
+                <hr style="width:75%;">
+              </div>
+            </div>`;
+            if (this.status == true) {
+              return undone;
+            } else if (this.status == false) {
+              return done;
+            }
+          };
+        }
+      }
       return startPage();
     },
 
@@ -301,6 +407,7 @@ var taskManager = function() {
           break;
         }
       }
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
       myModal.hide();
     },
@@ -318,6 +425,7 @@ var taskManager = function() {
           }
         }
       }
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
     },
 
@@ -334,11 +442,13 @@ var taskManager = function() {
           }
         }
       }
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
     },
     
     clearAll: function() {
       tasks.splice(0, tasks.length);
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
     },
 
@@ -353,6 +463,7 @@ var taskManager = function() {
       for (task of a) {
         tasks.push(task);
       }
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
     },
 
@@ -360,7 +471,12 @@ var taskManager = function() {
       for (item of tasks) {
         item.status = false;
       }
+      localStorage.setItem("theArray", JSON.stringify(tasks));
       startPage();
+    },
+
+    tasks: function() {
+      return tasks;
     }
   }
 }
