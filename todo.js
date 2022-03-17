@@ -14,6 +14,7 @@ var taskManager = function() {
       id: '1',
       title: 'Demo Task',
       date: dateString,
+      important: true,
       status: true,
       element: function(){
         return `<div id="task">
@@ -69,7 +70,7 @@ var taskManager = function() {
       }
     }
     if (undoneTasks.length == 0) {
-      undoneElement = '<br><h3>Add Tasks to see them here.</h3>';
+      undoneElement = '<br><div style="display:flex;justify-content:center;width:100%;"><h3>Add Tasks to see them here.</h3></div>';
       document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement;
     }
     for (item of tasks) {
@@ -97,14 +98,14 @@ var taskManager = function() {
       if (text) {
         let date = new Date();
         let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
-        let status = true;
         let id = idMaker();
         tasks.push(
           {
             id: id,
             title: text,
             date: dateString,
-            status: status,
+            status: true,
+            important: false,
             element: function(){
               return `<div id="task">
                 <div class="form-check">
@@ -157,7 +158,7 @@ var taskManager = function() {
       myModal.toggle();
     },
 
-    deleteTask: function(event) {
+    deleteTask: function() {
       let length = tasks.length;
       for (let i = 0; i < length; i++) {
         if (tasks[i].id === clickedID) {
@@ -173,8 +174,13 @@ var taskManager = function() {
       let ticID = event.path[0].id;
       for (item of tasks) {
         if (item.id == ticID) {
-          item.status = false;
-          break;
+          if (item.status) {
+            item.status = false;
+            break;
+          } else if (item.status == false) {
+            item.status = true;
+            break;
+          }
         }
       }
       startPage();

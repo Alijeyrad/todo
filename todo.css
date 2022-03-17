@@ -5,6 +5,7 @@ html, body {
 
 h3 {
   opacity: 0.8;
+  margin-bottom: 40px;
 }
 
 .navbar-brand {
@@ -114,6 +115,7 @@ footer {
 
 label {
   user-select: none;
+  word-break: break-word !important;
 }
 
 .buttons {
