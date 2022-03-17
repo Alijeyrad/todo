@@ -475,8 +475,9 @@ var taskManager = function() {
       startPage();
     },
 
-    tasks: function() {
-      return tasks;
+    clearMemory: function() {
+      localStorage.removeItem("theArray");
+      alert("Local memory was cleared. If you refresh your page now any current task will be gone. To avoid this create a new task and everything will be saved.")
     }
   }
 }
