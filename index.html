@@ -5,15 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ToDo List</title>
+  <link rel="icon" type="image/x-icon" href="./icon.png">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- Fontawesome -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
   integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- My Styles -->
   <link rel="stylesheet" href="./todo.css">
 </head>
+
 <body class="d-flex flex-column" onload="x.startApp()">
     <!-- Header -->
   <header>
@@ -49,33 +51,19 @@
   <main class="main">
     <!-- the section where the tasks are updated-->
     <div class="wrapper overflow-auto">
-      <!-- this is a single task 
-      <div id="task">
-        <div class="form-check">
-          <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckChecked">
-          <label class="form-check-label" for="flexCheckChecked">
-            task 1
-          </label>
-        </div>
-        <div class="buttons">
-          <button id="btn" type="button" class="btn btn-outline-danger btn-sm shadow-none">Delete</button>
-          <button id="btn" type="button" class="btn btn-outline-warning btn-sm shadow-none"><i style="padding-right:3px" class="fa-regular fa-star"></i>Important</button>
-          <button id="btn" type="button" class="btn btn-outline-info btn-sm shadow-none" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="information here">Info</button>
-        </div>
-      </div>
-      -->
+      <!-- tasks are updated here -->
     </div>
     
     <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Remove Task</h5>
+            <h5 class="modal-title" id="deleteModalLabel">Remove Task</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Are you sure about removing this task?
+            Do you want to remove this task?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -85,7 +73,6 @@
       </div>
     </div>
     
-
   </main>
 
   <!-- Footer -->

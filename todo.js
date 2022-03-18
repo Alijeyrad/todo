@@ -4,6 +4,7 @@ var taskManager = function() {
   let minutes = date.getMinutes().toString().padStart(2,0);
   let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${minutes}`
   var myModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+  let tasksDuplicate = [];
   const tasks = [
     {
       id: '1',
@@ -109,16 +110,15 @@ var taskManager = function() {
       }
     }
   ];
-  let tasksDuplicate = [];
 
   var startPage = function(e = false) {
     let undoneElement = '';
     let importantElement = '';
-    let doneElement = '<div id="line2"><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px">\
-    <p id="completed">Completed <i class="fa-solid fa-check-double"></i></p><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px"></div>';
     let undoneTasks = [];
     let doneTasks = [];
     let importantTasks = [];
+    let doneElement = '<div id="line2"><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px">\
+    <p id="completed">Completed <i class="fa-solid fa-check-double"></i></p><hr style="width:100%;opacity:0.8;height:2px;border-radius:2px"></div>';
     // divide the tasks into done and undone > status:true means undone
     for (item of tasks){
       if (item.status == true){
@@ -163,7 +163,7 @@ var taskManager = function() {
     } else if (doneTasks.length != 0 && importantTasks.length == 0) {
       document.getElementsByClassName('wrapper')[0].innerHTML = undoneElement + doneElement;
     }
-    // for the popovers by Bootstrap
+    // for the info popovers by Bootstrap
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl)
@@ -176,7 +176,8 @@ var taskManager = function() {
       let text = event.path[2][0].value;
       if (text) {
         let date = new Date();
-        let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
+        let minutes = date.getMinutes().toString().padStart(2,0);
+        let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${minutes}`
         let id = idMaker();
         tasks.push(
           {
@@ -296,6 +297,7 @@ var taskManager = function() {
         for (item of a) {
           tasks.push(item);
         }
+        // add functions to tasks
         for (item of tasks) {
           item.element = function(){
             return `<div id="task">
