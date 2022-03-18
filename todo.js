@@ -1,7 +1,8 @@
 var taskManager = function() {
   let clickedID;
   let date = new Date();
-  let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
+  let minutes = date.getMinutes().toString().padStart(2,0);
+  let dateString = `Created on ${date.getDay()}/${date.getMonth()}/${date.getFullYear()} at ${date.getHours()}:${minutes}`
   var myModal = new bootstrap.Modal(document.getElementById('deleteModal'));
   const tasks = [
     {
@@ -132,7 +133,6 @@ var taskManager = function() {
         importantTasks.push(item);
       }
     }
-    
     // check if there are any tasks, if not show message
     if (undoneTasks.length == 0) {
       undoneElement = '<br><div style="display:flex;justify-content:center;width:100%;"><h3 id="message">Add Tasks to see them here.</h3></div>';
