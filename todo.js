@@ -173,7 +173,7 @@ var taskManager = function() {
   return {
     addTask: function(event) {
       event.preventDefault();
-      let text = event.path[2][0].value;
+      let text = event.composedPath()[2][0].value;
       if (text) {
         let date = new Date();
         let minutes = date.getMinutes().toString().padStart(2,0);
@@ -401,7 +401,7 @@ var taskManager = function() {
     },
 
     selectedCard: function(event) {
-      clickedID = event.path[2].children[0].children[0].id;
+      clickedID = event.composedPath()[2].children[0].children[0].id;
       myModal.toggle();
     },
 
@@ -419,7 +419,7 @@ var taskManager = function() {
     },
 
     taskDone: function(event) {
-      let ticID = event.path[0].id;
+      let ticID = event.composedPath()[0].id;
       for (item of tasks) {
         if (item.id == ticID) {
           if (item.status) {
@@ -436,7 +436,7 @@ var taskManager = function() {
     },
 
     makeImportant: function(event) {
-      let btnID = event.path[0].name;
+      let btnID = event.composedPath()[0].name;
       for (item of tasks) {
         if (item.id == btnID) {
           if (item.important == false) {
@@ -483,7 +483,7 @@ var taskManager = function() {
 
     searchTasks: function(event) {
       // I don't even know how I wrote this one :)) but it's beautifull <3
-      let query = event.path[0].value;
+      let query = event.composedPath()[0].value;
       let searchTasks = [];
       tasksDuplicate = [''];
       tasksDuplicate = [...tasks];
